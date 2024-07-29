@@ -1,0 +1,42 @@
+/* src/styles/WorkoutDetails.css */
+.details_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Vertically center */
+    gap: 20px;
+    height: 100vh; /* Full viewport height to center vertically */
+    color: white;
+  }
+  
+  .details_container input,
+  .details_container textarea {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 80%; /* Adjust the width to be less wide */
+    max-width: 500px; /* Limit the maximum width */
+    box-sizing: border-box;
+    color: white; /* Text color */
+    background-color: black; /* Background color */
+  }
+  
+  .details_container textarea {
+    resize: none; /* Disable manual resizing */
+  }
+  
+  .details_container button {
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    background-color: black; /* Background color */
+    color: white; /* Text color */
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .details_container button:hover {
+    background-color: white; /* Hover background color */
+    color: black; /* Hover text color */
+  }
+  
