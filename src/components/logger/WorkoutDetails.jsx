@@ -37,7 +37,17 @@ function WorkoutDetails(props){
             }
             getLiftById();
         }
-    },[])
+        else {
+            // Reset the state if it's not an edit
+            setWorkoutDetails({
+                title: "",
+                lift: "",
+                protein: "",
+                notes: ""
+            });
+        }
+        
+    },[id])
 
     function handleInputChange(event){
         const {name, value} = event.target;
@@ -73,9 +83,35 @@ function WorkoutDetails(props){
             }
         })
     }
+
+    async function handleUpdate(){
+        const {title, lift, protein, notes} = workoutDetails;
+        try{
+            await axios.put('http://localhost:4000/update-lift',{
+                title,
+                lift,
+                protein,
+                notes,
+                id
+            });
+        }catch(error){
+            console.log("There was an error updating your workout");
+        }
+    }
+
+    async function handleDelete(){
+        try{
+            await axios.delete('http://localhost:4000/delete-lift',{
+                params: { id }
+            });
+        }catch(error){
+            console.log("There was an error updating your workout");
+        }
+    }
+
     return(
         <div className="details_container">
-            <h1>Workout Logger</h1>
+            <h1>{props.clicked ? "Edit Workout" : "Create Workout" }</h1>
             <label>Workout Name: </label>
             <input onChange={handleInputChange} name="title" value={workoutDetails.title} placeholder="Title"></input>
             <label>Lift Summary: </label>
@@ -84,7 +120,8 @@ function WorkoutDetails(props){
             <textarea onChange={handleInputChange} name="protein" value={workoutDetails.protein} rows="5"></textarea>
             <label>Additional Notes: </label>
             <textarea onChange={handleInputChange} name="notes" value={workoutDetails.notes} rows="5"></textarea>
-            <button onClick={handleSubmit} type="button">Submit</button>
+            <button onClick={props.clicked ? handleUpdate : handleSubmit} type="button">{props.clicked ? "Update" : "Create"}</button> 
+            {props.clicked && <button onClick={handleDelete} type="button">Delete</button>}
 
         </div>
     )

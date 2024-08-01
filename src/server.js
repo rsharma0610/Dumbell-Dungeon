@@ -40,11 +40,32 @@ app.get('/get-lift/:id', async (req, res) => {
 })
 
 app.post("/submit-lift", async(req, res) => {
-    //console.log("Post route hit");
+    console.log("submit lift route hit");
     const {title, lift, protein, notes} = req.body;
     try{
         await db.query("INSERT INTO lifts (title, lift, protein, note) VALUES ($1, $2, $3, $4);", [title, lift, protein, notes]);
         res.status(200).send("Lift submitted successfully");
+    }catch(error){
+        console.log("Database error", error);
+    }
+})
+
+app.put("/update-lift", async(req, res) => {
+    const {title, lift, protein, notes, id} = req.body;
+    console.log("update lift route hit");
+    try{
+        await db.query("UPDATE lifts SET title=$1, lift=$2, protein=$3, note=$4 WHERE id=$5;", [title, lift, protein, notes, id]);
+        res.status(200).send("Lift updated successfully");
+    }catch(error){
+        console.log("Database error", error);
+    }
+})
+
+app.delete("/delete-lift", async(req, res) => {
+    const {id} = req.query;
+    try{
+        await db.query("DELETE FROM lifts where id=$1;", [id]);
+        res.status(200).send("Lift deleted successfully");
     }catch(error){
         console.log("Database error", error);
     }

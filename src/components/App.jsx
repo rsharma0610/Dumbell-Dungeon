@@ -16,8 +16,8 @@ function App(){
             </nav>
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/create" element={<WorkoutDetails />} />
-                <Route path="/edit/:id" element={<WorkoutDetails clicked={true} />} />
+                <Route path="/create" element={<WorkoutDetails key="create" />} />
+                <Route path="/edit/:id" element={<WorkoutDetails key="edit" clicked={true} />} />
             </Routes>
         </>
         
