@@ -1,6 +1,9 @@
 .main_container{
     color: white;
 }
+.main_container h1{
+    text-align: center;
+}
 
 .lifts_container{
     display: flex;

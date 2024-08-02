@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {Link, Routes, Route} from "react-router-dom";
 import WorkoutDetails from "./logger/WorkoutDetails";
 import Home from "./display/Home";
+import "../styles/App.css";
 
 
 function App(){
@@ -9,7 +10,7 @@ function App(){
     return(
         <>
             <nav>
-                <ul>
+                <ul className='navbar'>
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/create">Create</Link></li>
                 </ul>

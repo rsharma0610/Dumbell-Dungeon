@@ -22,7 +22,7 @@ function Home(){
 
     return(
         <div className="main_container">
-            <h1>HOME PAGE</h1>
+            <h1>Lifts</h1>
             <div className="lifts_container">
                 {lifts.map((log) => {
                     return(
