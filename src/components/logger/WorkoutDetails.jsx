@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "../../styles/WorkoutDetails.css"
 import axios from "axios";
 
@@ -7,13 +7,15 @@ import axios from "axios";
 function WorkoutDetails(props){
     
     const { id } = useParams();
-    console.log(id)
+    //console.log(id)
     const [workoutDetails, setWorkoutDetails] = useState({
         title: "",
         lift: "",
         protein: "",
         notes: ""
     })
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         if(props.clicked){
@@ -82,6 +84,7 @@ function WorkoutDetails(props){
                 notes: ""
             }
         })
+        navigate('/');
     }
 
     async function handleUpdate(){
@@ -104,6 +107,7 @@ function WorkoutDetails(props){
             await axios.delete('http://localhost:4000/delete-lift',{
                 params: { id }
             });
+            navigate('/');
         }catch(error){
             console.log("There was an error updating your workout");
         }
